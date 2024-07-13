@@ -10,9 +10,11 @@ function App() {
     <>
       <Header />
       <MainContent />
-      <ButtonComponent text="버튼1" />
-      <ButtonComponent text="버튼2" />
-      <ButtonComponent text="버튼3" />
+      <ButtonComponent text={"메일"} color={"red"} />
+      <ButtonComponent text={"카페"} color={"blue"} />
+      <ButtonComponent text={"블로그"} color={"green"} >
+        <div>블로그 칠드런</div>  
+      </ButtonComponent>
       <Footer />
     </>
   )
