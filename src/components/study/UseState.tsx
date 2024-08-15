@@ -1,33 +1,33 @@
-import { useState } from "react";
+import { useState } from 'react'
 
 const UseState = () => {
-  const [count, setCount] = useState(0);
-  const [myName, setMyName] = useState("");
-  const [names, setNames] = useState(["이", "현", "기"]);
-  const [inputName, setInputName] = useState("");
+  const [count, setCount] = useState(0)
+  const [myName, setMyName] = useState('')
+  const [names, setNames] = useState(['이', '현', '기'])
+  const [inputName, setInputName] = useState('')
 
   const plusCount = () => {
-    setCount(count + 1);
-  };
+    setCount(count + 1)
+  }
   const resetCount = () => {
-    setCount(0);
-  };
+    setCount(0)
+  }
 
   const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMyName(event.target.value);
-  };
+    setMyName(event.target.value)
+  }
 
   const handleChangeInputName = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setInputName(event.target.value);
-  };
+    setInputName(event.target.value)
+  }
 
   const handleUpload = () => {
     setNames((prev) => {
-      return [...prev, inputName];
-    });
-  };
+      return [...prev, inputName]
+    })
+  }
 
   return (
     <>
@@ -52,12 +52,12 @@ const UseState = () => {
       <div>{myName}</div>
       <div>
         {names.map((name, index) => {
-          return <div key={index}>{name}</div>;
+          return <div key={index}>{name}</div>
         })}
       </div>
       {count}
     </>
-  );
-};
+  )
+}
 
-export default UseState;
+export default UseState
