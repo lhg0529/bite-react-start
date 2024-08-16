@@ -58,7 +58,7 @@ function App() {
         <TodoHeader />
         <TodoEditor onCreateggg={handleCreate} />
         <TodoList
-          todos={todos}
+          todoItem={todos}
           onUpdate={handleUpdate}
           onDelete={handleDelete}
         />

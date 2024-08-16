@@ -1,20 +1,12 @@
 import { useState } from 'react'
 import ListItem from './ListItem'
+import { TodoListProps } from './todoTypes'
 
-interface TodoProps {
-  id: number
-  content2: string
-  isDone: boolean
-  date: number
-}
-
-interface TodoListProps {
-  todos: TodoProps[]
-  onUpdate: (targetId: number) => void
-  onDelete: (targetId: number) => void
-}
-
-const TodoList: React.FC<TodoListProps> = ({ todos, onUpdate, onDelete }) => {
+const TodoList: React.FC<TodoListProps> = ({
+  todoItem,
+  onUpdate,
+  onDelete,
+}) => {
   const [search, setSearch] = useState('')
 
   const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,9 +15,9 @@ const TodoList: React.FC<TodoListProps> = ({ todos, onUpdate, onDelete }) => {
 
   const getFilteredTodos = () => {
     if (search === '') {
-      return todos
+      return todoItem
     }
-    return todos.filter((todo) =>
+    return todoItem.filter((todo) =>
       todo.content2.toLowerCase().includes(search.toLowerCase())
     )
   }
@@ -48,7 +40,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos, onUpdate, onDelete }) => {
         return (
           <ListItem
             key={todo.id}
-            item={todo}
+            todoItem={todo}
             onUpdate={onUpdate}
             onDelete={onDelete}
           />
