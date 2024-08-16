@@ -1,24 +1,29 @@
 import { TodoItemProps } from './todoTypes'
 
 const ListItem: React.FC<TodoItemProps> = ({
-  todoItem,
-  onUpdate,
-  onDelete,
+  todoItem2,
+  onUpdate2,
+  onDelete2,
 }) => {
-  const onCheckUpdate = () => {
-    onUpdate(todoItem.id)
+  console.log('item rerendered')
+  const onClickCheckbox = () => {
+    onUpdate2(todoItem2.id)
+  }
+
+  const onClickDeleteButton = () => {
+    return onDelete2(todoItem2.id)
   }
 
   return (
     <div className="todo-list-item">
       <input
-        checked={todoItem.isDone}
+        checked={todoItem2.isDone}
         type="checkbox"
-        onChange={onCheckUpdate}
+        onChange={onClickCheckbox}
       />
-      <div>{todoItem.content2}</div>
-      <div>{new Date(todoItem.date).toLocaleString()}</div>
-      <button onClick={() => onDelete(todoItem.id)}>삭제</button>
+      <div>{todoItem2.content2}</div>
+      <div>{new Date(todoItem2.date).toLocaleString()}</div>
+      <button onClick={onClickDeleteButton}>삭제</button>
     </div>
   )
 }

@@ -1,17 +1,22 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { TodoContext } from './TodoContext'
 
-const TodoEditor = ({
-  onCreateggg,
-}: {
-  onCreateggg: (content333: string) => void
-}) => {
+const TodoEditor = () => {
+  console.log('editor rerendered')
   const [content11, setContent11] = useState<string>('')
+  const todoContext = useContext(TodoContext)
+
+  if (!todoContext) {
+    throw new Error('TodoEditor must be used within a TodoProvider')
+  }
+
+  const { handleCreate } = todoContext
 
   const onSubmit = () => {
     if (content11 === '') {
       return
     }
-    onCreateggg(content11)
+    handleCreate(content11)
     setContent11('')
   }
 

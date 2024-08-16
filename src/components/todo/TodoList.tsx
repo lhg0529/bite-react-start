@@ -1,13 +1,18 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import ListItem from './ListItem'
-import { TodoListProps } from './todoTypes'
+import { ItemProps } from './todoTypes'
+import { TodoContext } from './TodoContext'
 
-const TodoList: React.FC<TodoListProps> = ({
-  todoItem,
-  onUpdate,
-  onDelete,
-}) => {
+const TodoList = () => {
+  console.log('list rerendered')
   const [search, setSearch] = useState('')
+  const todoContext = useContext(TodoContext)
+
+  if (!todoContext) {
+    throw new Error('TodoList must be used within a TodoProvider')
+  }
+
+  const { todos, handleUpdate, handleDelete } = todoContext
 
   const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value)
@@ -15,9 +20,9 @@ const TodoList: React.FC<TodoListProps> = ({
 
   const getFilteredTodos = () => {
     if (search === '') {
-      return todoItem
+      return todos
     }
-    return todoItem.filter((todo) =>
+    return todos.filter((todo: ItemProps) =>
       todo.content2.toLowerCase().includes(search.toLowerCase())
     )
   }
@@ -36,13 +41,13 @@ const TodoList: React.FC<TodoListProps> = ({
         />
         <button>검색</button>
       </div>
-      {filteredTodos.map((todo) => {
+      {filteredTodos.map((todo: ItemProps) => {
         return (
           <ListItem
             key={todo.id}
-            todoItem={todo}
-            onUpdate={onUpdate}
-            onDelete={onDelete}
+            todoItem2={todo}
+            onUpdate2={handleUpdate}
+            onDelete2={handleDelete}
           />
         )
       })}
